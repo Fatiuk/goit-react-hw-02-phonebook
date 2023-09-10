@@ -19,24 +19,34 @@ export default class App extends Component {
     filter: '',
   };
 
+  // The method that adds a new contact to the list of contacts
   addContact = newContact => {
     this.setState(prevState => ({
       contacts: [...prevState.contacts, newContact],
     }));
   };
-
+  // The method that updates the value of the filter
   changeFilter = event => {
-    this.setState({ filter: event.target.value });
+    this.setState({
+      filter: event.target.value,
+    });
+  };
+  // The method that returns the filtered list of contacts
+  filteredContacts = () => {
+    const { contacts, filter } = this.state;
+    return contacts.filter(contact =>
+      contact.name.toLowerCase().includes(filter.toLowerCase().trim())
+    );
   };
 
   render() {
-    const { contacts, filter } = this.state;
+    const { filter } = this.state;
     return (
       <Section title="📚 Phonebook 📞">
         <ContactForm onSubmit={this.addContact}></ContactForm>
         <h2>Contacts</h2>
         <Filter filter={filter} onChange={this.changeFilter}></Filter>
-        <ContactList contacts={contacts}></ContactList>
+        <ContactList contacts={this.filteredContacts()}></ContactList>
       </Section>
     );
   }

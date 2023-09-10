@@ -14,27 +14,27 @@ export default class ContactForm extends Component {
     number: '',
   };
 
-  // Fucnction which contrlos changes from input
+  // Method that handles input changes and updates state
   handleInputChange = event => {
     const { name, value } = event.target;
     this.setState({ [name]: value });
   };
 
-  // Method which add contact (submit form)
+  // Method that adds a contact when the form is submitted
   handleSubmitForm = event => {
     event.preventDefault();
-    // Add ID for new contact
+    // Generate a unique ID for the new contact
     const newContact = {
       id: nanoid(),
       ...this.state,
     };
-    console.log(newContact);
-    // Add new contact (prop from App)
+    // Invoke the onSubmit function (provided as a prop from the App) to add the new contact
     this.props.onSubmit(newContact);
+    // Reset the form fields
     this.reset();
   };
 
-  // Method which reset form
+  // Method that resets the form fields
   reset = () => {
     this.setState({ number: '', name: '' });
   };
