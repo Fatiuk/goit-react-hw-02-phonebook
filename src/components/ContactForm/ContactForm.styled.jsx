@@ -1,6 +1,6 @@
 import styled from 'styled-components';
 
-export const ContactForm = styled.form`
+export const FormWrap = styled.form`
   display: flex;
   flex-direction: column;
 `;
@@ -12,12 +12,12 @@ export const InputContainer = styled.div`
 `;
 export const ContactLabel = styled.label`
   position: absolute;
-  top: ${({ hasValue }) => (hasValue ? '-10px' : '10px')};
-  left: 10px;
+  top: ${({ $hasValue }) => ($hasValue ? '-15px' : '10px')};
+  left: ${({ $hasValue }) => ($hasValue ? '6px' : '10px')};
   pointer-events: none;
   transition: 0.2s ease all;
-  color: ${({ hasValue }) => (hasValue ? '#555' : '#999')};
-  font-size: ${({ hasValue }) => (hasValue ? '12px' : '16px')};
+  color: ${({ $hasValue }) => ($hasValue ? '#555' : '#999')};
+  font-size: ${({ $hasValue }) => ($hasValue ? '12px' : '16px')};
 `;
 export const ContactInput = styled.input`
   padding: 10px;
@@ -39,7 +39,8 @@ export const AddContactButton = styled.button`
   text-transform: uppercase;
   font-weight: 600;
   letter-spacing: 1.2px;
-  border: 1px solid black;
+  color: #555;
+  border: 1px solid #ccc;
   border-radius: 24px;
   cursor: pointer;
   transition: all 0.3s;
