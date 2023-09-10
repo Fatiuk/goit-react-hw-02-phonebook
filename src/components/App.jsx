@@ -24,7 +24,7 @@ export default class App extends Component {
   addContact = newContact => {
     // Check if a contact with the same name already exists
     const isExist = this.state.contacts.find(el => el.name === newContact.name);
-    // If the contact already exists, display a warning and exit
+    // If the contact already exists, display a warning
     if (isExist)
       return Notiflix.Report.warning(
         'Alert',
