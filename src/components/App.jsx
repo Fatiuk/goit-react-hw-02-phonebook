@@ -36,6 +36,12 @@ export default class App extends Component {
       contacts: [...prevState.contacts, newContact],
     }));
   };
+  // The method that deletes the contact by its ID
+  deleteContact = contactId => {
+    this.setState(prevState => ({
+      contacts: prevState.contacts.filter(contact => contact.id !== contactId),
+    }));
+  };
   // The method that updates the value of the filter
   changeFilter = event => {
     this.setState({
@@ -57,7 +63,10 @@ export default class App extends Component {
         <ContactForm onSubmit={this.addContact}></ContactForm>
         <h2>Contacts</h2>
         <Filter filter={filter} onChange={this.changeFilter}></Filter>
-        <ContactList contacts={this.filteredContacts()}></ContactList>
+        <ContactList
+          contacts={this.filteredContacts()}
+          handleDeleteContact={this.deleteContact}
+        ></ContactList>
       </Section>
     );
   }

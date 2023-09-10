@@ -4,9 +4,10 @@ import {
   PhonebookItem,
   ContactSpan,
   ContactLink,
+  ContactDeleteBtn,
 } from './ContactList.styled';
 
-const ContactList = ({ contacts }) => {
+const ContactList = ({ contacts, handleDeleteContact }) => {
   return (
     <ContactListWrap>
       <PhonebookList>
@@ -14,6 +15,12 @@ const ContactList = ({ contacts }) => {
           <PhonebookItem key={id}>
             <ContactSpan>{name}</ContactSpan>:{' '}
             <ContactLink href={`tel:${number}`}>{number}</ContactLink>
+            <ContactDeleteBtn
+              type="button"
+              onClick={() => handleDeleteContact(id)}
+            >
+              Delete
+            </ContactDeleteBtn>
           </PhonebookItem>
         ))}
       </PhonebookList>
