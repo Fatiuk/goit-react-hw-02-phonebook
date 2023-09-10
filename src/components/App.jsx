@@ -1,4 +1,5 @@
 import React, { Component } from 'react';
+import Notiflix from 'notiflix';
 // ============ Section ============
 import Section from './Section/Section';
 // ============ ContactForm ============
@@ -21,6 +22,16 @@ export default class App extends Component {
 
   // The method that adds a new contact to the list of contacts
   addContact = newContact => {
+    // Check if a contact with the same name already exists
+    const isExist = this.state.contacts.find(el => el.name === newContact.name);
+    // If the contact already exists, display a warning and exit
+    if (isExist)
+      return Notiflix.Report.warning(
+        'Alert',
+        `Contact with name this name already exists!`,
+        'Okay'
+      );
+    // If the contact doesn't exist, add it to the list of contacts
     this.setState(prevState => ({
       contacts: [...prevState.contacts, newContact],
     }));
